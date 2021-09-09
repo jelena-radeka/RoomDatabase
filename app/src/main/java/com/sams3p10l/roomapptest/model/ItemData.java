@@ -1,4 +1,4 @@
-package com.sams3p10l.roomapptest;
+package com.sams3p10l.roomapptest.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -16,7 +16,6 @@ public class ItemData implements Serializable {
     private String text;
 
     public ItemData(String text) {
-        this.ID = ID;
         this.text = text;
     }
 

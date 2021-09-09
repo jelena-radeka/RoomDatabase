@@ -1,14 +1,16 @@
-package com.sams3p10l.roomapptest;
+package com.sams3p10l.roomapptest.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.sams3p10l.roomapptest.R;
+import com.sams3p10l.roomapptest.model.ItemData;
 
 import java.util.List;
 
@@ -16,9 +18,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private List<ItemData> dataList;
     private Activity context;
-    private RoomDB database;
 
-    public ListAdapter(Activity context,List<ItemData> dataList) {
+    public ListAdapter(Activity context, List<ItemData> dataList) {
         this.dataList = dataList;
         this.context = context;
         notifyDataSetChanged();
@@ -26,24 +27,24 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
-    public void setData(List<ItemData> data) {
-        this.dataList = data;
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ItemData data = dataList.get(position);
+        holder.textView.setText(data.getText());
+    }
+
+    public void setData(List<ItemData> list) {
+        dataList = dataList;
         notifyDataSetChanged();
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull  ViewHolder holder, int position) {
-
-        ItemData data=dataList.get(position);
-        database=RoomDB.getInstance(context);
-        holder.textView.setText(data.getText());
-
+    public List<ItemData> getDataList() {
+        return dataList;
     }
 
     @Override
@@ -55,9 +56,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         private TextView textView;
 
-        public ViewHolder(@NonNull  View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView=itemView.findViewById(R.id.title);
+            textView = itemView.findViewById(R.id.title);
         }
     }
 }

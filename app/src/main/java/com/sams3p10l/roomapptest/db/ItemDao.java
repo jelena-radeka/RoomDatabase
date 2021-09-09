@@ -1,13 +1,15 @@
-package com.sams3p10l.roomapptest;
+package com.sams3p10l.roomapptest.db;
 
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.sams3p10l.roomapptest.model.ItemData;
+
 import java.util.List;
+
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
